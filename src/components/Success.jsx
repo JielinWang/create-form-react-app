@@ -5,6 +5,17 @@ import Confetti from "react-confetti";
 
 const Success = () => {
   const navigate = useNavigate();
+  const [pieces, setPieces] = useState(200);
+
+  const stopConfetti = () => {
+    setTimeout(() => {
+      setPieces(0);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    stopConfetti();
+  }, []);
   return (
     <m.main
       initial={{ opacity: 0 }}
@@ -22,6 +33,7 @@ const Success = () => {
           as we can!
         </p>
       </div>
+      <Confetti gravity={0.2} numberOfPieces={pieces} />
     </m.main>
   );
 };

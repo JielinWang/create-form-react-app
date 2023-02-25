@@ -1,6 +1,6 @@
 import React from "react";
 import SelectUSState from "react-select-us-states";
-
+import formImage from "/formImage.png";
 const Home = () => {
   const setNewValue = (value) => {
     console.log(value);
@@ -71,8 +71,12 @@ const Home = () => {
               >
                 Occupation
               </label>
-              <select className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 ">
-                <option value="" selected="selected" disabled="disabled">
+              <select
+                defaultValue={"DEFAULT"}
+                required="required"
+                className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
+              >
+                <option value="DEFAULT" disabled="disabled">
                   -- select one --
                 </option>
                 <option value="Dentist">- Dentist</option>
@@ -82,7 +86,7 @@ const Home = () => {
               </select>
             </div>
             {/* Country input field */}
-            <div className="pb-4">
+            <div className="pb-4" required="required">
               <label
                 className="block font-latoBold text-sm pb-2"
                 htmlFor="state"
@@ -94,9 +98,14 @@ const Home = () => {
                 onChange={setNewValue}
               />
             </div>
+            <button
+              type="submit"
+              className="bg-purple-400 font-latoBold text-lg text-white py-3 mt-6 rounded-lg w-full"
+            >
+              submit
+            </button>
           </div>
         </div>
-        <div></div>
       </form>
     </main>
   );

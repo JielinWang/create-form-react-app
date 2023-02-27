@@ -20,7 +20,7 @@ const Success = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className=" h-screen items-center flex justify-center relative"
+      className=" h-screen items-center flex justify-center "
     >
       <div className="bg-white rounded-lg  font-latoRegular text-gray-700 p-16">
         <h1 className="text-3xl pb-4 font-latoBold">
@@ -31,12 +31,7 @@ const Success = () => {
           you as soon as we can!
         </p>
       </div>
-      <Confetti
-        gravity={0.2}
-        numberOfPieces={pieces}
-        width={window.innerWidth}
-        height={window.innerHeight}
-      />
+      <Confetti gravity={0.2} numberOfPieces={pieces} />
     </m.main>
   );
 };

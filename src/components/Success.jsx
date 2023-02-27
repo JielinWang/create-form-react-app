@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { motion as m } from "framer-motion";
 import Confetti from "react-confetti";
 
 const Success = () => {
-  const navigate = useNavigate();
-  const [pieces, setPieces] = useState(200);
+  const [pieces, setPieces] = useState(300);
 
   const stopConfetti = () => {
     setTimeout(() => {
       setPieces(0);
-    }, 3000);
+    }, 2500);
   };
 
   useEffect(() => {
@@ -23,17 +22,21 @@ const Success = () => {
       exit={{ opacity: 0 }}
       className=" h-screen items-center flex justify-center relative"
     >
-      <div className="bg-white rounded-lg w-1/3 font-latoRegular text-gray-700 p-16">
+      <div className="bg-white rounded-lg  font-latoRegular text-gray-700 p-16">
         <h1 className="text-3xl pb-4 font-latoBold">
-          Hi {navigate.query.name}! Thanks for the submitting ! ✨
+          Thanks for submitting it! ✨
         </h1>
         <p className="text-lg  text-gray-500">
-          We are successfully received your information! We have sent you an
-          email over at {navigate.query.email}. We will get back to you as soon
-          as we can!
+          We have successfully received your information and will get back to
+          you as soon as we can!
         </p>
       </div>
-      <Confetti gravity={0.2} numberOfPieces={pieces} />
+      <Confetti
+        gravity={0.2}
+        numberOfPieces={pieces}
+        width={window.innerWidth}
+        height={window.innerHeight}
+      />
     </m.main>
   );
 };

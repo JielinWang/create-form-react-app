@@ -23,7 +23,7 @@ const Home = () => {
       state: "",
     },
 
-    //Add Yup Validation
+    //Validation Schema with Yup
     validationSchema: Yup.object({
       name: Yup.string()
         .max(20, "Must be 20 characters or less")
@@ -49,7 +49,7 @@ const Home = () => {
 
   onSubmit: (values) => {
     console.log(values);
-    navigate({ pathname: "/success", query: values });
+    navigate("/success");
     alert(JSON.stringify(values, null, 2));
   };
   return (

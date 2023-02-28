@@ -22,7 +22,6 @@ First, Vite asks for your project name.
 Then, Vite will want to know if you’re using React or another library
 
 Here, I save vite-app at the my root directory and chose react. For doing that you only need to type ./ instead of the project name. Then
-
 ```
 npm install
 
@@ -34,14 +33,12 @@ You can open the application on your browser [http://localhost:5173](http://loca
 ## How to Run from GitHub Repo
 
 Download or Fork this repository and follow the next steps
-
 ```
 git clone git@github.com:JielinWang/create-form-react-app.git
 
 npm install
 
 npm run dev
-
 ```
 
 Once have run all of the commands above, you can open the application on your browser [http://localhost:5173](http://localhost:5173)
@@ -81,8 +78,8 @@ npm run build
 
 - Fill in the Name, Email, Password, Occupation, and state validation form
 - Submit button redirects to the success page
-- Get request from [API](https://frontend-take-home.fetchrewards.com/form) to display Occupations and States data
-- Post request from [API](https://frontend-take-home.fetchrewards.com/form) to submit form data
+- Get request from this [API](https://frontend-take-home.fetchrewards.com/form) to display Occupations and States data
+- Post request from this [API](https://frontend-take-home.fetchrewards.com/form) to submit form data
 
 ## Images of the App
 

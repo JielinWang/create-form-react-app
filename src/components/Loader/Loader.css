@@ -47,13 +47,7 @@ body {
 
   animation: spin 2s linear infinite;
 }
-/* .left-box .dot{
-    border: 1px solid lightcoral;
-}
-.right-box .dot{
-    border: 1px solid lightseagreen;
-} */
-/* dot */
+
 .dot::after {
   content: "";
   position: absolute;

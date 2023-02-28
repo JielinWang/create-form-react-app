@@ -1,16 +1,35 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import * as Yup from "yup";
 import Loader from "./Loader/Loader";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { motion as m } from "framer-motion";
+import { motion as m, sync } from "framer-motion";
 
 const Home = () => {
+  const [data, setData] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  //Loading
   useEffect(() => {
     setTimeout(() => setLoading(false), 3000);
+  }, []);
+
+  //Get data from API
+  const getAllData = async () => {
+    await axios
+      .get("https://frontend-take-home.fetchrewards.com/form")
+      .then((res) => {
+        console.log(res);
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getAllData();
   }, []);
 
   // Formik Logics
@@ -38,36 +57,45 @@ const Home = () => {
         .matches(/[A-Z]/, "Password requires an uppercase letter")
         .matches(/[^\w]/, "Password requires a symbol")
         .required("Password is Required"),
-      occupation: Yup.string().oneOf(
-        occupations,
-        "Must only select one occupation"
-      ),
-      state: Yup.string().oneOf(states, "Must only select one state"),
+      occupation: Yup.string().required("Occupation is Required"),
+      state: Yup.string().required("State is Required"),
     }),
-  });
-  //Submit Form
 
-  onSubmit: (values) => {
-    console.log(values);
-    navigate("/success");
-    alert(JSON.stringify(values, null, 2));
-  };
+    //Submit Form
+    onSubmit: (values) => {
+      console.log("form data", values);
+      const addData = async (e) => {
+        e.preventDefault();
+        await axios
+          .post("https://frontend-take-home.fetchrewards.com/form", values)
+          .then((res) => {
+            if (res.data.status_code === 201) {
+              navigate("/success");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+    },
+  });
+
   return (
     <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute w-full"
+      className=" w-full "
     >
       {loading === true ? (
         <Loader />
       ) : (
-        <main className="h-screen items-center flex justify-center">
+        <main className="  h-screen items-center flex justify-center">
           <form
             onSubmit={formik.handleSubmit}
-            className="bg-white flex rounded-lg font-latoRegular"
+            className="bg-white rounded-lg font-latoRegular"
           >
-            <div className="flex-1 text-gray-700  p-20">
+            <div className=" text-gray-700  p-20">
               <h1 className="text-3xl pb-2 font-latoBold">
                 Let's get started 👋
               </h1>
@@ -162,21 +190,18 @@ const Home = () => {
                       ? formik.errors.occupation
                       : "Occupation"}
                   </label>
+
                   <select
                     value={formik.values.occupation}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     name="occupation"
-                    defaultValue={"DEFAULT"}
                     className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
                   >
-                    <option value="DEFAULT" disabled="disabled">
-                      -- select one --
-                    </option>
-                    <option value="Dentist">- Dentist</option>
-                    <option value="Therapist">- Therapist</option>
-                    <option value="Law">- Lawyer, Judge</option>
-                    <option value="Military">- Military</option>
+                    <option value="default">-- select one --</option>
+                    {data.occupations.map((option, i) => {
+                      return <option key={i}>{option}</option>;
+                    })}
                   </select>
                 </div>
                 {/* State input field */}
@@ -198,9 +223,13 @@ const Home = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     name="state"
-                    defaultValue={"DEFAULT"}
                     className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
-                  ></select>
+                  >
+                    <option value="default">-- select one --</option>
+                    {data.states.map((option, i) => {
+                      return <option key={i}>{option.name}</option>;
+                    })}
+                  </select>
                 </div>
                 <button
                   type="submit"

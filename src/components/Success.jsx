@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { motion as m } from "framer-motion";
 import Confetti from "react-confetti";
 

@@ -94,6 +94,7 @@ const Home = () => {
               <h1 className="text-3xl pb-2 font-latoBold">
                 Let's get started 👋
               </h1>
+
               <p className="text-lg  text-gray-500">
                 Tell us your information. Start to fill out this form to
                 continue!
@@ -226,6 +227,7 @@ const Home = () => {
                     })}
                   </select>
                 </div>
+                {/* Submit button */}
                 <button
                   type="submit"
                   className="bg-purple-400 font-latoBold text-lg text-white py-3 mt-6 rounded-lg w-full"

@@ -5,6 +5,7 @@ import Confetti from "react-confetti";
 const Success = () => {
   const [pieces, setPieces] = useState(300);
 
+  //Set Confetti stopping time
   const stopConfetti = () => {
     setTimeout(() => {
       setPieces(0);
@@ -14,6 +15,7 @@ const Success = () => {
   useEffect(() => {
     stopConfetti();
   }, []);
+
   return (
     <m.main
       initial={{ opacity: 0 }}

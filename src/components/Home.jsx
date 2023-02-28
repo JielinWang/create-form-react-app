@@ -65,7 +65,7 @@ const Home = () => {
       const response = await axios
         .post("https://frontend-take-home.fetchrewards.com/form", values)
         .then((res) => {
-          console.log(res.data);
+          console.log(res);
           navigate("/success");
         })
         .catch((err) => {

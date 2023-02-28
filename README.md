@@ -95,6 +95,9 @@ Succefully submitting page
 
 ![success page](https://user-images.githubusercontent.com/94776104/221976131-26f4127b-1161-48ca-844e-462a3696a820.gif)
 
+Postman 201 status Post request
+
+<img width="1239" alt="post request for the API" src="https://user-images.githubusercontent.com/94776104/221977646-6ce76a0b-553e-401e-91ce-e813f09eec05.png">
 
 ## Author
 [Jielin Wang](https://www.linkedin.com/in/jielinwang-/)

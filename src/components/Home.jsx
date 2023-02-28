@@ -22,7 +22,7 @@ const Home = () => {
       .get("https://frontend-take-home.fetchrewards.com/form")
       .then((res) => {
         console.log(res);
-        setData(response.data);
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -62,21 +62,32 @@ const Home = () => {
     }),
 
     //Submit Form
-    onSubmit: (values) => {
+    /* onSubmit: (values) => {
       console.log("form data", values);
-      const addData = async (e) => {
-        e.preventDefault();
-        await axios
-          .post("https://frontend-take-home.fetchrewards.com/form", values)
-          .then((res) => {
-            if (res.data.status_code === 201) {
-              navigate("/success");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      };
+
+      axios
+        .post("https://frontend-take-home.fetchrewards.com/form", values)
+        .then((res) => {
+          if (res.data.status_code === 200) {
+            console.log(res.data);
+            navigate("/success");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },*/
+
+    onSubmit: async (values) => {
+      const response = await axios
+        .post("https://frontend-take-home.fetchrewards.com/form", values)
+        .then((res) => {
+          console.log(res.data);
+          navigate("/success");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
 
@@ -199,8 +210,8 @@ const Home = () => {
                     className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
                   >
                     <option value="default">-- select one --</option>
-                    {data.occupations.map((option, i) => {
-                      return <option key={i}>{option}</option>;
+                    {data.occupations.map((occupation, i) => {
+                      return <option key={i}>{occupation}</option>;
                     })}
                   </select>
                 </div>
@@ -226,8 +237,8 @@ const Home = () => {
                     className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
                   >
                     <option value="default">-- select one --</option>
-                    {data.states.map((option, i) => {
-                      return <option key={i}>{option.name}</option>;
+                    {data.states.map((state, i) => {
+                      return <option key={i}>{state.name}</option>;
                     })}
                   </select>
                 </div>

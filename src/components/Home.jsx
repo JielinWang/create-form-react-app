@@ -61,28 +61,12 @@ const Home = () => {
       state: Yup.string().required("State is Required"),
     }),
 
-    //Submit Form
-    /* onSubmit: (values) => {
-      console.log("form data", values);
-
-      axios
-        .post("https://frontend-take-home.fetchrewards.com/form", values)
-        .then((res) => {
-          if (res.data.status_code === 200) {
-            console.log(res.data);
-            navigate("/success");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },*/
-
+    //Send post submitting Form
     onSubmit: async (values) => {
       const response = await axios
         .post("https://frontend-take-home.fetchrewards.com/form", values)
         .then((res) => {
-          console.log(res.data);
+          console.log(res);
           navigate("/success");
         })
         .catch((err) => {
@@ -209,7 +193,7 @@ const Home = () => {
                     name="occupation"
                     className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
                   >
-                    <option value="default">-- select one --</option>
+                    <option>-- select one --</option>
                     {data.occupations.map((occupation, i) => {
                       return <option key={i}>{occupation}</option>;
                     })}
@@ -236,7 +220,7 @@ const Home = () => {
                     name="state"
                     className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
                   >
-                    <option value="default">-- select one --</option>
+                    <option>-- select one --</option>
                     {data.states.map((state, i) => {
                       return <option key={i}>{state.name}</option>;
                     })}

@@ -21,7 +21,6 @@ const Home = () => {
     await axios
       .get("https://frontend-take-home.fetchrewards.com/form")
       .then((res) => {
-        console.log(res);
         setData(res.data);
       })
       .catch((err) => {
@@ -66,7 +65,7 @@ const Home = () => {
       const response = await axios
         .post("https://frontend-take-home.fetchrewards.com/form", values)
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
           navigate("/success");
         })
         .catch((err) => {
@@ -115,7 +114,7 @@ const Home = () => {
                       : "Full Name"}
                   </label>
                   <input
-                    className="border-2 border-gray-500 p-2 rounded-md w-1/2 focus:outline-purple-400 focus:ring-purple-400 "
+                    className="border-2 border-gray-500 p-2 rounded-md w-1/2 focus:border-purple-500 focus:ring-purple-500 "
                     type="text"
                     name="name"
                     value={formik.values.name}
@@ -139,7 +138,7 @@ const Home = () => {
                       : "Email"}
                   </label>
                   <input
-                    className="border-2 border-gray-500 p-2 rounded-md w-1/2 focus:outline-purple-400 focus:ring-purple-400 "
+                    className="border-2 border-gray-500 p-2 rounded-md w-1/2 focus:border-purple-400 focus:ring-purple-400 "
                     type="email"
                     name="email"
                     value={formik.values.email}
@@ -163,7 +162,7 @@ const Home = () => {
                       : "Password"}
                   </label>
                   <input
-                    className="border-2 border-gray-500 p-2 rounded-md w-1/2 focus:outline-purple-400 focus:ring-purple-400 "
+                    className="border-2 border-gray-500 p-2 rounded-md w-1/2 focus:border-purple-400 focus:ring-purple-400 "
                     type="password"
                     name="password"
                     value={formik.values.password}
@@ -192,7 +191,7 @@ const Home = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     name="occupation"
-                    className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
+                    className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:border-purple-400 focus:ring-purple-400 "
                   >
                     <option>-- select one --</option>
                     {data.occupations.map((occupation, i) => {
@@ -219,7 +218,7 @@ const Home = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     name="state"
-                    className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:outline-purple-400 focus:ring-purple-400 "
+                    className="border-2 border-gray-500 p-2 rounded-md w-1/2  focus:border-purple-400 focus:ring-purple-400 "
                   >
                     <option>-- select one --</option>
                     {data.states.map((state, i) => {
